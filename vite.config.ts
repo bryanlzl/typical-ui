@@ -16,7 +16,11 @@ export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd());
     return {
         plugins: [react(), tsconfigPaths(), tailwindcss()],
-
+        resolve: {
+            alias: {
+                '@app': path.resolve(__dirname, './src/app'),
+            },
+        },
         server: {
             host: '0.0.0.0',
             port: Number.parseInt(env.VITE_PORT) || 3000,

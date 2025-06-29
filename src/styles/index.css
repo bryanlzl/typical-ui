@@ -1,0 +1,88 @@
+@import 'tailwindcss';
+@source '../../node_modules/@headlessui/react/dist/**/*.{js,ts,jsx,tsx}';
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/*//* fonts */
+@font-face {
+    font-family: 'urbanist';
+    src: url('/fonts/urbanist-regular-var.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'urbanist';
+    src: url('/fonts/urbanist-italic-var.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'inter';
+    src: url('/fonts/inter-regular-var.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'inter';
+    src: url('/fonts/inter-italic-var.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'source-code-pro';
+    src: url('/fonts/source-code-pro-regular-var.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'source-code-pro';
+    src: url('/fonts/source-code-pro-italic-var.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: italic;
+}
+
+@theme {
+    /*//* background palette */
+    --color-bgDark: #232325;
+    --color-bgBright: #2a2a2c;
+
+    /*//* grayscale palette */
+    --color-black-100: #1f1f21;
+    --color-black-90: #323233;
+    --color-black-80: #444446;
+    --color-black-70: #575758;
+    --color-black-60: #69696b;
+    --color-black-50: #7c7c7d;
+    --color-black-40: #8f8f8f;
+    --color-black-30: #a1a1a2;
+    --color-black-20: #b4b4b4;
+    --color-black-10: #c6c6c7;
+    --color-white: #ffffff;
+
+    /*//* traffic light palette */
+    --color-red: #ff5550;
+    --color-redLight: #ff8f8f;
+    --color-orange: #ff9b19;
+    --color-orangeLight: #ffd399;
+    --color-green: #22c55e;
+    --color-greenLight: #7ccf9a;
+
+    /*//* accent palette */
+    --color-blueDeep: #0073ff;
+    --color-blueDeepLight: #68acff;
+    --color-blue: #03bef3;
+    --color-blueLight: #8cd4e7;
+    --color-purple: #905df1;
+    --color-purpleLight: #c09fff;
+    --color-teal: #06e7ae;
+    --color-tealLight: #8de9d2;
+    --color-yellow: #ffda0b;
+    --color-yellowLight: #ffef92;
+    --color-pink: #ff49d1;
+    --color-pinkLight: #ff9be6;
+
+    /*//* font families */
+    --font-header: urbanist, system-ui;
+    --font-body: inter, system-ui;
+    --font-code: source-code-pro, roboto-mono, system-ui;
+}

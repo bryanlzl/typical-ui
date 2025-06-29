@@ -1,0 +1,41 @@
+{
+    //* prettier formatting
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.bracketSameLine": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+        "source.fixAll.eslint": "explicit"
+    },
+
+    //* lang-sepcific formatter overrides
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    //* typeScript/JavaScript behavior
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "javascript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+
+    //* UI & Editor tweaks
+    "editor.minimap.enabled": false,
+    "editor.stickyScroll.enabled": false,
+    "explorer.confirmDelete": false,
+    "chat.commandCenter.enabled": false,
+
+    //* misc
+    "vstuc.refreshOnSave": true,
+    "notebook.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnType": false
+}

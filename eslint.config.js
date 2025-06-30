@@ -1,6 +1,7 @@
 import js from '@eslint/js';
 import pluginImport from 'eslint-plugin-import';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
+import pluginSortExports from 'eslint-plugin-sort-exports';
 import pluginUnusedImports from 'eslint-plugin-unused-imports';
 import tseslint from 'typescript-eslint';
 
@@ -24,24 +25,29 @@ export default [
             import: pluginImport,
             'react-hooks': pluginReactHooks,
             'unused-imports': pluginUnusedImports,
+            'sort-exports': pluginSortExports,
         },
         rules: {
+            //* typescript
             '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: '^_' }],
             '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/no-empty-object-type': 'off',
             '@typescript-eslint/no-empty-pattern': 'off',
 
-            //* react rules
+            //* react
             'react/react-in-jsx-scope': 'off',
 
-            //* react hooks rules
+            //* react hooks
             'react-hooks/rules-of-hooks': 'error',
             'react-hooks/exhaustive-deps': 'off',
 
-            //* import rules
+            //* import
             'unused-imports/no-unused-imports': 'error',
             'import/no-unresolved': 'error',
             'import/order': 'off',
+
+            //* export
+            'sort-exports/sort-exports': ['error', { sortDir: 'asc', ignoreCase: true }],
         },
         settings: {
             react: {

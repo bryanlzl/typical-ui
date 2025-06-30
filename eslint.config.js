@@ -31,8 +31,6 @@ export default [
             '@typescript-eslint/no-empty-object-type': 'off',
             '@typescript-eslint/no-empty-pattern': 'off',
 
-            'unused-imports/no-unused-imports': 'error',
-
             //* react rules
             'react/react-in-jsx-scope': 'off',
 
@@ -41,6 +39,7 @@ export default [
             'react-hooks/exhaustive-deps': 'off',
 
             //* import rules
+            'unused-imports/no-unused-imports': 'error',
             'import/no-unresolved': 'error',
             'import/order': 'off',
         },

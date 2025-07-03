@@ -1,7 +1,7 @@
 import js from '@eslint/js';
 import pluginImport from 'eslint-plugin-import';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
-import pluginSortExports from 'eslint-plugin-sort-exports';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import pluginUnusedImports from 'eslint-plugin-unused-imports';
 import tseslint from 'typescript-eslint';
 
@@ -25,7 +25,7 @@ export default [
             import: pluginImport,
             'react-hooks': pluginReactHooks,
             'unused-imports': pluginUnusedImports,
-            'sort-exports': pluginSortExports,
+            'simple-import-sort': simpleImportSort,
         },
         rules: {
             //* typescript
@@ -47,7 +47,7 @@ export default [
             'import/order': 'off',
 
             //* export
-            'sort-exports/sort-exports': ['error', { sortDir: 'asc', ignoreCase: true }],
+            'simple-import-sort/exports': 'warn',
         },
         settings: {
             react: {

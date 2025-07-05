@@ -1,7 +1,8 @@
 # default
 node_modules
 dist
-dist-ssr
+archived
+backup
 *.local
 *.log
 

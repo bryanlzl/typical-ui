@@ -1,7 +1,3 @@
-export const SPECTRUM_TONAL_PALETTE: number[] = [
-    0, 4, 6, 10, 12, 17, 20, 22, 24, 30, 40, 50, 60, 70, 80, 87, 90, 92, 94, 95, 96, 98, 99, 100,
-];
-
 export const SCHEMA_LIGHT_THEME_COLOR: Record<string, string> = {
     //* primary
     primary: 'pri-40',
@@ -72,7 +68,6 @@ export const SCHEMA_LIGHT_THEME_COLOR: Record<string, string> = {
     scrim: 'neu-0',
     shadow: 'neu-0',
 };
-
 export const SCHEMA_DARK_THEME_COLOR: Record<string, string> = {
     //* primary
     primary: 'pri-80',

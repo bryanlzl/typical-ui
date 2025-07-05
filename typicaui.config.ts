@@ -1,19 +1,19 @@
 export const tokens = {
     colors: {
         /*//* primary palette */
-        primary: 'oklch(0.4955 0.1305 293.71)',
+        pri: 'oklch(0.4955 0.1305 293.71)',
         /*//* secondary palette */
-        secondary: 'oklch(0.4859 0.0358 299.61)',
+        sec: 'oklch(0.4859 0.0358 299.61)',
         /*//* tertiary palette */
-        tertiary: 'oklch(0.4904 0.0605 358.45)',
+        ter: 'oklch(0.4904 0.0605 358.45)',
         /*//* neutral palette */
-        neutral: 'oklch(0.4835 0.0116 305.22)',
+        neu: 'oklch(0.4835 0.0116 305.22)',
         /*//* neutral variant palette*/
-        'neutral-variant': 'oklch(0.4843 0.0147 301.01)',
+        'neu-var': 'oklch(0.4843 0.0147 301.01)',
         /*//* traffic light palette */
-        error: 'oklch(0.5013 0.1783 28.7)',
-        warn: 'oklch(0.5559  0.1783 70)',
-        success: 'oklch(0.5559  0.1783 140)',
+        err: 'oklch(0.5013 0.1783 28.7)',
+        wrn: 'oklch(0.5559  0.1783 70)',
+        suc: 'oklch(0.5559  0.1783 140)',
     },
     'font-face': {
         urbanist: [

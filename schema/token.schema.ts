@@ -1,4 +1,4 @@
-export const SCHEMA_THEME_COLOR_LIGHT: Record<string, string> = {
+export const SCHEMA_COLOR_LIGHT: Record<string, string> = {
     //* primary
     primary: 'pri-40',
     'on-primary': 'pri-100',
@@ -76,7 +76,7 @@ export const SCHEMA_ELEVATION_LIGHT: Record<string, string> = {
     'elevation-5': '0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.3)',
 };
 
-export const SCHEMA_THEME_COLOR_DARK: Record<string, string> = {
+export const SCHEMA_COLOR_DARK: Record<string, string> = {
     //* primary
     primary: 'pri-80',
     'on-primary': 'pri-20',

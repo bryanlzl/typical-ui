@@ -1,13 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { MD3_SCHEMA } from '../schema';
 import { tokens } from '../typica.config';
-import {
-    SCHEMA_ELEVATION_DARK,
-    SCHEMA_ELEVATION_LIGHT,
-    SCHEMA_THEME_COLOR_DARK,
-    SCHEMA_THEME_COLOR_LIGHT,
-} from './token.schema';
 import {
     emitThemeBlock,
     generateTonalHex,
@@ -75,8 +70,8 @@ for (const [fontRole, fontFamilies] of Object.entries(tokens.typography['font-ro
 css += `}\n\n`;
 
 //*  THEME VARIABLES [COLOR, ELEVATION] (DARK & LIGHT)
-css += emitThemeBlock('light', SCHEMA_THEME_COLOR_LIGHT, SCHEMA_ELEVATION_LIGHT);
-css += emitThemeBlock('dark', SCHEMA_THEME_COLOR_DARK, SCHEMA_ELEVATION_DARK);
+css += emitThemeBlock('light', MD3_SCHEMA['themeColorLight'], MD3_SCHEMA['elevationLight']);
+css += emitThemeBlock('dark', MD3_SCHEMA['themeColorDark'], MD3_SCHEMA['elevationDark']);
 
 fs.writeFileSync(outputPath, css);
 console.log(`✅ Tokens written to ${outputPath}`);

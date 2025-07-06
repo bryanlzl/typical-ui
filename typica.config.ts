@@ -1,5 +1,5 @@
 export const tokens = {
-    colors: {
+    color: {
         /*//* primary palette */
         pri: 'oklch(0.4955 0.1305 293.71)',
         /*//* secondary palette */
@@ -12,51 +12,62 @@ export const tokens = {
         'neu-var': 'oklch(0.4843 0.0147 301.01)',
         /*//* traffic light palette */
         err: 'oklch(0.5013 0.1783 28.7)',
-        wrn: 'oklch(0.5559  0.1783 70)',
-        suc: 'oklch(0.5559  0.1783 140)',
+
+        wrn: 'oklch(0.5559  0.1783 70)', //& NOT PART OF MD3
+        suc: 'oklch(0.5559  0.1783 140)', //& NOT PART OF MD3
     },
-    'font-face': {
-        urbanist: [
-            {
-                'font-family': 'urbanist',
-                src: "url('/fonts/urbanist-regular-var.woff2') format('woff2')",
-                'font-weight': '100 900',
-                'font-style': 'normal',
-            },
-            {
-                'font-family': 'urbanist',
-                src: "url('/fonts/urbanist-italic-var.woff2') format('woff2')",
-                'font-weight': '100 90',
-                'font-style': 'italic',
-            },
-        ],
-        inter: [
-            {
-                'font-family': 'inter',
-                src: "url('/fonts/inter-regular-var.woff2') format('woff2')",
-                'font-weight': '100 900',
-                'font-style': 'rmal',
-            },
-            {
-                'font-family': 'inter',
-                src: "url('/fonts/inter-italic-var.woff2') format('woff2')",
-                'font-weight': '100 900',
-                'font-style': 'italic',
-            },
-        ],
-        'source-code-pro': [
-            {
-                'font-family': 'source-code-pro',
-                src: "url('/fonts/source-code-pro-regular-var.woff2') format('woff2')",
-                'font-weight': '100 900',
-                'font-style': 'normal',
-            },
-            {
-                'font-family': 'source-code-pro',
-                src: "url('/fonts/source-code-pro-italic-var.woff2') format('woff2')",
-                'font-weight': '100 900',
-                'font-style': 'italic',
-            },
-        ],
+
+    typography: {
+        'font-family': {
+            urbanist: [
+                {
+                    'font-family': 'urbanist',
+                    src: "url('/fonts/urbanist-regular-var.woff2') format('woff2')",
+                    'font-weight': '100 900',
+                    'font-style': 'normal',
+                },
+                {
+                    'font-family': 'urbanist',
+                    src: "url('/fonts/urbanist-italic-var.woff2') format('woff2')",
+                    'font-weight': '100 90',
+                    'font-style': 'italic',
+                },
+            ],
+            inter: [
+                {
+                    'font-family': 'inter',
+                    src: "url('/fonts/inter-regular-var.woff2') format('woff2')",
+                    'font-weight': '100 900',
+                    'font-style': 'rmal',
+                },
+                {
+                    'font-family': 'inter',
+                    src: "url('/fonts/inter-italic-var.woff2') format('woff2')",
+                    'font-weight': '100 900',
+                    'font-style': 'italic',
+                },
+            ],
+            'source-code-pro': [
+                {
+                    'font-family': 'source-code-pro',
+                    src: "url('/fonts/source-code-pro-regular-var.woff2') format('woff2')",
+                    'font-weight': '100 900',
+                    'font-style': 'normal',
+                },
+                {
+                    'font-family': 'source-code-pro',
+                    src: "url('/fonts/source-code-pro-italic-var.woff2') format('woff2')",
+                    'font-weight': '100 900',
+                    'font-style': 'italic',
+                },
+            ],
+        },
+        'font-role': {
+            display: ['urbanist', 'roboto', 'system-ui'],
+            headline: ['urbanist', 'roboto', 'system-ui'],
+            title: ['urbanist', 'roboto', 'system-ui'],
+            body: ['inter', 'roboto', 'system-ui'],
+            label: ['inter', 'roboto', 'system-ui'],
+        },
     },
 };

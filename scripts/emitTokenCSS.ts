@@ -3,6 +3,13 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { tokens } from '../typica.config';
 import {
+    SCHEMA_ELEVATION_DARK,
+    SCHEMA_ELEVATION_LIGHT,
+    SCHEMA_THEME_COLOR_DARK,
+    SCHEMA_THEME_COLOR_LIGHT,
+} from './token.schema';
+import {
+    emitThemeBlock,
     generateTonalHex,
     generateTonalOKLCH,
     generateTonalRGB,
@@ -23,45 +30,53 @@ const SPECTRUM_TONAL_PALETTE: number[] = [
 
 let css = `@import 'tailwindcss';\n\n`;
 
-//* FONT-FACE
-for (const [_, faces] of Object.entries(tokens['font-face'])) {
-    for (const face of faces) {
+//* FONT FAMILY
+for (const [_, fontFamilies] of Object.entries(tokens['typography']['font-family'])) {
+    for (const family of fontFamilies) {
         css += `@font-face {\n`;
-        for (const [k, v] of Object.entries(face)) {
+        for (const [k, v] of Object.entries(family)) {
             css += `  ${k}: ${v};\n`;
         }
         css += `}\n`;
     }
 }
 
-css += `\n:root {\n`;
+css += `\n@theme {\n`;
 
 //* TONAL COLORS
-for (const [key, baseValue] of Object.entries(tokens.colors)) {
+for (const [key, baseValue] of Object.entries(tokens.color)) {
     for (const tone of SPECTRUM_TONAL_PALETTE) {
         const cssVarName = `--color-${key}-${tone}`;
-        let colorValue: string;
-
-        if (tone === 40) {
-            colorValue = baseValue;
-        } else if (isOKLCH(baseValue)) {
-            colorValue = generateTonalOKLCH(baseValue, tone);
-        } else if (isRGBA(baseValue)) {
-            colorValue = generateTonalRGBA(baseValue, tone);
-        } else if (isRGB(baseValue)) {
-            colorValue = generateTonalRGB(baseValue, tone);
-        } else if (isHex(baseValue)) {
-            colorValue = generateTonalHex(baseValue, tone);
-        } else {
-            colorValue = baseValue;
+        let colorValue: string = baseValue;
+        if (tone !== 40) {
+            if (isOKLCH(baseValue)) {
+                colorValue = generateTonalOKLCH(baseValue, tone);
+            } else if (isRGBA(baseValue)) {
+                colorValue = generateTonalRGBA(baseValue, tone);
+            } else if (isRGB(baseValue)) {
+                colorValue = generateTonalRGB(baseValue, tone);
+            } else if (isHex(baseValue)) {
+                colorValue = generateTonalHex(baseValue, tone);
+            }
         }
         css += `  ${cssVarName}: ${colorValue};\n`;
     }
 }
 
-css += '}\n';
+css += '  \n';
 
-//* THEME COLORS
+//* FONT ROLES
+for (const [fontRole, fontFamilies] of Object.entries(tokens.typography['font-role'])) {
+    css += `  --font-${fontRole}:  `;
+    css += fontFamilies.map((f) => `"${f}"`).join(', ') + ';';
+    css += '  \n';
+}
+
+css += `}\n\n`;
+
+//*  THEME VARIABLES [COLOR, ELEVATION] (DARK & LIGHT)
+css += emitThemeBlock('light', SCHEMA_THEME_COLOR_LIGHT, SCHEMA_ELEVATION_LIGHT);
+css += emitThemeBlock('dark', SCHEMA_THEME_COLOR_DARK, SCHEMA_ELEVATION_DARK);
 
 fs.writeFileSync(outputPath, css);
 console.log(`✅ Tokens written to ${outputPath}`);

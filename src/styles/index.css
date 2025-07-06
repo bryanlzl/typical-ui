@@ -37,7 +37,7 @@
   font-style: italic;
 }
 
-:root {
+@theme {
   --color-pri-0: oklch(0 0 0);
   --color-pri-4: oklch(0.0496 0.0131 293.71);
   --color-pri-6: oklch(0.0743 0.0196 293.71);
@@ -230,28 +230,117 @@
   --color-suc-98: oklch(0.981 0.0081 140);
   --color-suc-99: oklch(0.9905 0.004 140);
   --color-suc-100: oklch(1 0 0);
-  --color-custom-0: rgba(0, 0, 0, 1);
-  --color-custom-4: rgba(12, 12, 13, 1);
-  --color-custom-6: rgba(18, 17, 19, 1);
-  --color-custom-10: rgba(29, 28, 33, 1);
-  --color-custom-12: rgba(35, 33, 40, 1);
-  --color-custom-17: rgba(48, 44, 59, 1);
-  --color-custom-20: rgba(56, 50, 71, 1);
-  --color-custom-22: rgba(61, 54, 80, 1);
-  --color-custom-24: rgba(66, 58, 88, 1);
-  --color-custom-30: rgba(81, 68, 115, 1);
-  --color-custom-40: rgba(103, 80, 164, 1);
-  --color-custom-50: rgba(125, 104, 181, 1);
-  --color-custom-60: rgba(149, 131, 195, 1);
-  --color-custom-70: rgba(172, 159, 208, 1);
-  --color-custom-80: rgba(196, 186, 221, 1);
-  --color-custom-87: rgba(213, 206, 231, 1);
-  --color-custom-90: rgba(220, 214, 235, 1);
-  --color-custom-92: rgba(224, 219, 238, 1);
-  --color-custom-94: rgba(229, 225, 240, 1);
-  --color-custom-95: rgba(231, 228, 242, 1);
-  --color-custom-96: rgba(237, 234, 243, 1);
-  --color-custom-98: rgba(246, 246, 248, 1);
-  --color-custom-99: rgba(251, 251, 251, 1);
-  --color-custom-100: rgba(255, 255, 255, 1);
+  
+  --font-display:  "urbanist", "roboto", "system-ui";  
+  --font-headline:  "urbanist", "roboto", "system-ui";  
+  --font-title:  "urbanist", "roboto", "system-ui";  
+  --font-body:  "inter", "roboto", "system-ui";  
+  --font-label:  "inter", "roboto", "system-ui";  
+}
+
+ [data-theme='light'] {
+  --color-primary: var(--color-pri-40);
+  --color-on-primary: var(--color-pri-100);
+  --color-primary-container: var(--color-pri-90);
+  --color-on-primary-container: var(--color-pri-30);
+  --color-primary-fixed: var(--color-pri-90);
+  --color-primary-fixed-dim: var(--color-pri-80);
+  --color-on-primary-fixed: var(--color-pri-10);
+  --color-on-primary-fixed-variant: var(--color-pri-30);
+  --color-inverse-primary: var(--color-pri-80);
+  --color-secondary: var(--color-sec-40);
+  --color-on-secondary: var(--color-sec-100);
+  --color-secondary-container: var(--color-sec-90);
+  --color-on-secondary-container: var(--color-sec-30);
+  --color-secondary-fixed: var(--color-sec-90);
+  --color-secondary-fixed-dim: var(--color-sec-80);
+  --color-on-secondary-fixed: var(--color-sec-10);
+  --color-on-secondary-fixed-variant: var(--color-sec-30);
+  --color-tertiary: var(--color-ter-40);
+  --color-on-tertiary: var(--color-ter-100);
+  --color-tertiary-container: var(--color-ter-90);
+  --color-on-tertiary-container: var(--color-ter-30);
+  --color-tertiary-fixed: var(--color-ter-90);
+  --color-tertiary-fixed-dim: var(--color-ter-80);
+  --color-on-tertiary-fixed: var(--color-ter-10);
+  --color-on-tertiary-fixed-variant: var(--color-ter-30);
+  --color-error: var(--color-err-40);
+  --color-on-error: var(--color-err-100);
+  --color-error-container: var(--color-err-90);
+  --color-on-error-container: var(--color-err-30);
+  --color-surface-dim: var(--color-neu-87);
+  --color-surface: var(--color-neu-98);
+  --color-surface-bright: var(--color-neu-98);
+  --color-surface-container-lowest: var(--color-neu-100);
+  --color-surface-container-low: var(--color-neu-96);
+  --color-surface-container: var(--color-neu-94);
+  --color-surface-container-high: var(--color-neu-92);
+  --color-surface-container-highest: var(--color-neu-90);
+  --color-on-surface: var(--color-neu-10);
+  --color-on-surface-variant: var(--color-neu-var-30);
+  --color-inverse-surface: var(--color-neu-20);
+  --color-inverse-on-surface: var(--color-neu-95);
+  --color-outline: var(--color-neu-var-50);
+  --color-outline-variant: var(--color-neu-var-80);
+  --color-scrim: var(--color-neu-0);
+  --color-shadow: var(--color-neu-0);
+  
+  --elevation-1: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --elevation-2: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --elevation-3: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+  --elevation-4: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px 0px rgba(0, 0, 0, 0.3);
+  --elevation-5: 0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.3);
+}
+ [data-theme='dark'] {
+  --color-primary: var(--color-pri-80);
+  --color-on-primary: var(--color-pri-20);
+  --color-primary-container: var(--color-pri-30);
+  --color-on-primary-container: var(--color-pri-90);
+  --color-primary-fixed: var(--color-pri-90);
+  --color-primary-fixed-dim: var(--color-pri-80);
+  --color-on-primary-fixed: var(--color-pri-10);
+  --color-on-primary-fixed-variant: var(--color-pri-30);
+  --color-inverse-primary: var(--color-pri-40);
+  --color-secondary: var(--color-sec-80);
+  --color-on-secondary: var(--color-sec-20);
+  --color-secondary-container: var(--color-sec-30);
+  --color-on-secondary-container: var(--color-sec-90);
+  --color-secondary-fixed: var(--color-sec-90);
+  --color-secondary-fixed-dim: var(--color-sec-80);
+  --color-on-secondary-fixed: var(--color-sec-10);
+  --color-on-secondary-fixed-variant: var(--color-sec-30);
+  --color-tertiary: var(--color-ter-80);
+  --color-on-tertiary: var(--color-ter-20);
+  --color-tertiary-container: var(--color-ter-30);
+  --color-on-tertiary-container: var(--color-ter-90);
+  --color-tertiary-fixed: var(--color-ter-90);
+  --color-tertiary-fixed-dim: var(--color-ter-80);
+  --color-on-tertiary-fixed: var(--color-ter-10);
+  --color-on-tertiary-fixed-variant: var(--color-ter-30);
+  --color-error: var(--color-err-80);
+  --color-on-error: var(--color-err-20);
+  --color-error-container: var(--color-err-30);
+  --color-on-error-container: var(--color-err-90);
+  --color-surface-dim: var(--color-neu-6);
+  --color-surface: var(--color-neu-6);
+  --color-surface-bright: var(--color-neu-24);
+  --color-surface-container-lowest: var(--color-neu-4);
+  --color-surface-container-low: var(--color-neu-10);
+  --color-surface-container: var(--color-neu-12);
+  --color-surface-container-high: var(--color-neu-17);
+  --color-surface-container-highest: var(--color-neu-22);
+  --color-on-surface: var(--color-neu-90);
+  --color-on-surface-variant: var(--color-neu-var-80);
+  --color-inverse-surface: var(--color-neu-90);
+  --color-inverse-on-surface: var(--color-neu-20);
+  --color-outline: var(--color-neu-var-60);
+  --color-outline-variant: var(--color-neu-var-30);
+  --color-scrim: var(--color-neu-0);
+  --color-shadow: var(--color-neu-0);
+  
+  --elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  --elevation-2: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  --elevation-3: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+  --elevation-4: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px 0px rgba(0, 0, 0, 0.3);
+  --elevation-5: 0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.3);
 }

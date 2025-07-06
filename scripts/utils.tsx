@@ -1,8 +1,4 @@
-export const isOKLCH = (value: string): boolean => value.startsWith('oklch');
-export const isRGB = (value: string): boolean => value.startsWith('rgb') && !value.startsWith('rgba');
-export const isRGBA = (value: string): boolean => value.startsWith('rgba');
-export const isHex = (value: string): boolean => /^#([0-9a-fA-F]{6})$/.test(value);
-
+//* GENERATE TONAL PALETTE
 export const generateTonalOKLCH = (base: string, tone: number): string => {
     const match = base.match(/^oklch\(\s*([0-9.]+)\s+([0-9.]+)\s+([0-9.]+)\s*\)$/);
     if (!match) return base;
@@ -224,3 +220,28 @@ export const generateTonalRGBA = (base: string, tone: number): string => {
     const bOut = Math.round(hue2rgb(p, q, h - 1 / 3) * 255);
     return `rgba(${rOut}, ${gOut}, ${bOut}, ${a})`;
 };
+
+//* EMIT THEME VARIABLES
+export const emitThemeBlock = (
+    name: string,
+    theme: Record<string, string>,
+    elevation: Record<string, string>,
+): string => {
+    let out = ` [data-theme='${name}'] {\n`;
+    for (const [k, v] of Object.entries(theme)) {
+        out += `  --color-${k}: var(--color-${v});\n`;
+    }
+    out += `  \n`;
+    for (const [k, v] of Object.entries(elevation)) {
+        out += `  --${k}: ${v};\n`;
+    }
+    out += `}\n`;
+    return out;
+};
+
+//* HELPER METHODS
+//^ CHECK COLOR VAR TYPEE
+export const isOKLCH = (value: string): boolean => value.startsWith('oklch');
+export const isRGB = (value: string): boolean => value.startsWith('rgb') && !value.startsWith('rgba');
+export const isRGBA = (value: string): boolean => value.startsWith('rgba');
+export const isHex = (value: string): boolean => /^#([0-9a-fA-F]{6})$/.test(value);

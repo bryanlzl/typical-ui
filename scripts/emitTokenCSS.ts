@@ -67,11 +67,49 @@ for (const [fontRole, fontFamilies] of Object.entries(tokens.typography['font-ro
     css += '  \n';
 }
 
+css += '  \n';
+
+//* TYPE SCALES
+for (const [typescaleProp, typescaleValue] of Object.entries(MD3_SCHEMA.typeScale)) {
+    if (typescaleValue.includes('--font-')) {
+        css += `  --font-${typescaleProp}: ${typescaleValue};\n`;
+    } else if (typescaleProp.includes('weight')) {
+        const baseName = typescaleProp.replace('-weight', '');
+        css += `  --font-weight-${baseName}: ${typescaleValue};\n`;
+    } else if (typescaleProp.includes('line-height')) {
+        const baseName = typescaleProp.replace('-line-height', '');
+        css += `  --leading-${baseName}: ${typescaleValue};\n`;
+    } else if (typescaleProp.includes('tracking')) {
+        const baseName = typescaleProp.replace('-tracking', '');
+        css += `  --tracking-${baseName}: ${typescaleValue};\n\n`;
+    } else {
+        css += `  --text-${typescaleProp}: ${typescaleValue};\n`;
+    }
+}
+
+//* TYPE SCALES (emphasized)
+for (const [typescaleProp, typescaleValue] of Object.entries(MD3_SCHEMA.typeScaleEmphasized)) {
+    if (typescaleValue.includes('--font-')) {
+        css += `  --font-emphasized-${typescaleProp}: ${typescaleValue};\n`;
+    } else if (typescaleProp.includes('weight')) {
+        const baseName = typescaleProp.replace('-weight', '');
+        css += `  --font-weight-emphasized-${baseName}: ${typescaleValue};\n`;
+    } else if (typescaleProp.includes('line-height')) {
+        const baseName = typescaleProp.replace('-line-height', '');
+        css += `  --leading-emphasized-${baseName}: ${typescaleValue};\n`;
+    } else if (typescaleProp.includes('tracking')) {
+        const baseName = typescaleProp.replace('-tracking', '');
+        css += `  --tracking-emphasized-${baseName}: ${typescaleValue};\n\n`;
+    } else {
+        css += `  --text-emphasized-${typescaleProp}: ${typescaleValue};\n`;
+    }
+}
+
 css += `}\n\n`;
 
 //*  THEME VARIABLES [COLOR, ELEVATION] (DARK & LIGHT)
-css += emitThemeBlock('light', MD3_SCHEMA['themeColorLight'], MD3_SCHEMA['elevationLight']);
-css += emitThemeBlock('dark', MD3_SCHEMA['themeColorDark'], MD3_SCHEMA['elevationDark']);
+css += emitThemeBlock('light', MD3_SCHEMA.themeColorLight, MD3_SCHEMA.elevationLight);
+css += emitThemeBlock('dark', MD3_SCHEMA.themeColorDark, MD3_SCHEMA.elevationDark);
 
 fs.writeFileSync(outputPath, css);
 console.log(`✅ Tokens written to ${outputPath}`);

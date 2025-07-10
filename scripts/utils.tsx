@@ -240,7 +240,7 @@ export const emitThemeBlock = (
 };
 
 //* HELPER METHODS
-//^ CHECK COLOR VAR TYPEE
+//^ CHECK COLOR FORMAT
 export const isOKLCH = (value: string): boolean => value.startsWith('oklch');
 export const isRGB = (value: string): boolean => value.startsWith('rgb') && !value.startsWith('rgba');
 export const isRGBA = (value: string): boolean => value.startsWith('rgba');

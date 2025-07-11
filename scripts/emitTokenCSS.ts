@@ -5,6 +5,7 @@ import { MD3_SCHEMA } from '../schema';
 import { tokens } from '../typica.config';
 import {
     emitThemeBlock,
+    emitTypescaleUtilityClass,
     generateTonalHex,
     generateTonalOKLCH,
     generateTonalRGB,
@@ -131,44 +132,12 @@ css += `}\n\n`;
 css += `@layer utilities {\n`;
 
 //* TYPESCALE (normal)
-for (const [typescaleName, tsPropsMap] of Object.entries(typescaleProps.normal)) {
-    css += `  .typescale-${typescaleName} {\n`;
-    for (const propVarName of tsPropsMap as string[]) {
-        if (propVarName.includes('-family')) {
-            css += `    font-family: var(${propVarName});\n`;
-        } else if (propVarName.includes('--font-weight-')) {
-            css += `    font-weight: var(${propVarName});\n`;
-        } else if (propVarName.includes('--text')) {
-            css += `    font-size: var(${propVarName});\n`;
-        } else if (propVarName.includes('--leading')) {
-            css += `    line-height: var(${propVarName});\n`;
-        } else if (propVarName.includes('--tracking')) {
-            css += `    letter-spacing: var(${propVarName});\n`;
-        }
-    }
-    css += `  }\n`;
-}
+css += emitTypescaleUtilityClass('typescale', typescaleProps.normal);
 
 css += '\n';
 
 //* TYPESCALE (emphasized)
-for (const [typescaleName, tsPropsMap] of Object.entries(typescaleProps.emphasized)) {
-    css += `  .typescale-emphasized-${typescaleName} {\n`;
-    for (const propVarName of tsPropsMap as string[]) {
-        if (propVarName.includes('-family')) {
-            css += `    font-family: var(${propVarName});\n`;
-        } else if (propVarName.includes('--font-weight-')) {
-            css += `    font-weight: var(${propVarName});\n`;
-        } else if (propVarName.includes('--text')) {
-            css += `    font-size: var(${propVarName});\n`;
-        } else if (propVarName.includes('--leading')) {
-            css += `    line-height: var(${propVarName});\n`;
-        } else if (propVarName.includes('--tracking')) {
-            css += `    letter-spacing: var(${propVarName});\n`;
-        }
-    }
-    css += `  }\n`;
-}
+css += emitTypescaleUtilityClass('typescale-emphasized', typescaleProps.emphasized);
 
 css += `}\n\n`;
 

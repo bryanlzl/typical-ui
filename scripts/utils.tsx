@@ -239,6 +239,29 @@ export const emitThemeBlock = (
     return out;
 };
 
+//* EMIT TYPESCALE UTILITIES
+export const emitTypescaleUtilityClass = (classPrefix: string, typescaleMap: Record<string, string[]>): string => {
+    let result = '';
+    for (const [typescaleName, tsPropsMap] of Object.entries(typescaleMap)) {
+        result += `  .${classPrefix}-${typescaleName} {\n`;
+        for (const propVarName of tsPropsMap) {
+            if (propVarName.includes('-family')) {
+                result += `    font-family: var(${propVarName});\n`;
+            } else if (propVarName.includes('--font-weight-')) {
+                result += `    font-weight: var(${propVarName});\n`;
+            } else if (propVarName.includes('--text')) {
+                result += `    font-size: var(${propVarName});\n`;
+            } else if (propVarName.includes('--leading')) {
+                result += `    line-height: var(${propVarName});\n`;
+            } else if (propVarName.includes('--tracking')) {
+                result += `    letter-spacing: var(${propVarName});\n`;
+            }
+        }
+        result += `  }\n`;
+    }
+    return result;
+};
+
 //* HELPER METHODS
 //^ CHECK COLOR FORMAT
 export const isOKLCH = (value: string): boolean => value.startsWith('oklch');

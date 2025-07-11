@@ -6,7 +6,7 @@ const App = (): JSX.Element => {
                 <p className="font-typescale-emphasized-display-large-font text-emphasized-display-large-font-size text-[var(--color-primary)] shadow-[var(--elevation-1)]">
                     Awesome, this app runs now!
                 </p>
-                <p className="tracking-emphasized-body-small shadow-[var(--elevation-2)]">Awesome, lol</p>
+                <p className="typescale-title-medium">Awesome, lol</p>
             </span>
         </div>
     );

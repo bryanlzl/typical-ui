@@ -23,6 +23,7 @@ const SPECTRUM_TONAL_PALETTE: number[] = [
     0, 4, 6, 10, 12, 17, 20, 22, 24, 30, 40, 50, 60, 70, 80, 87, 90, 92, 94, 95, 96, 98, 99, 100,
 ];
 
+const typescaleProps = { normal: {}, emphasized: {} };
 let css = `@import 'tailwindcss';\n\n`;
 
 //* FONT FAMILY
@@ -36,7 +37,9 @@ for (const [_, fontFamilies] of Object.entries(tokens['typography']['font-family
     }
 }
 
-css += `\n@theme {\n`;
+css += `\n`;
+
+css += `@theme {\n`;
 
 //* TONAL COLORS
 for (const [key, baseValue] of Object.entries(tokens.color)) {
@@ -58,7 +61,7 @@ for (const [key, baseValue] of Object.entries(tokens.color)) {
     }
 }
 
-css += '  \n';
+css += '\n';
 
 //* FONT ROLES
 for (const [fontRole, fontFamilies] of Object.entries(tokens.typography['font-role'])) {
@@ -67,42 +70,104 @@ for (const [fontRole, fontFamilies] of Object.entries(tokens.typography['font-ro
     css += '  \n';
 }
 
-css += '  \n';
+css += '\n';
 
-//* TYPE SCALES
+//* TYPESCALE PROPERTY (normal)
 for (const [typescaleProp, typescaleValue] of Object.entries(MD3_SCHEMA.typeScale)) {
+    const croppedPropName = typescaleProp.split('-').slice(0, 2).join('-');
+    if (!(croppedPropName in typescaleProps.normal)) {
+        typescaleProps.normal[croppedPropName] = [];
+    }
     if (typescaleValue.includes('--font-')) {
         css += `  --font-${typescaleProp}: ${typescaleValue};\n`;
+        typescaleProps.normal[croppedPropName].push(`--font-${typescaleProp}`);
     } else if (typescaleProp.includes('weight')) {
         const baseName = typescaleProp.replace('-weight', '');
         css += `  --font-weight-${baseName}: ${typescaleValue};\n`;
+        typescaleProps.normal[croppedPropName].push(`--font-weight-${baseName}`);
     } else if (typescaleProp.includes('line-height')) {
         const baseName = typescaleProp.replace('-line-height', '');
         css += `  --leading-${baseName}: ${typescaleValue};\n`;
+        typescaleProps.normal[croppedPropName].push(`--leading-${baseName}`);
     } else if (typescaleProp.includes('tracking')) {
         const baseName = typescaleProp.replace('-tracking', '');
         css += `  --tracking-${baseName}: ${typescaleValue};\n\n`;
+        typescaleProps.normal[croppedPropName].push(`--tracking-${baseName}`);
     } else {
         css += `  --text-${typescaleProp}: ${typescaleValue};\n`;
+        typescaleProps.normal[croppedPropName].push(`--text-${typescaleProp}`);
     }
 }
 
-//* TYPE SCALES (emphasized)
+//* TYPESCALE PROPERTY (emphasized)
 for (const [typescaleProp, typescaleValue] of Object.entries(MD3_SCHEMA.typeScaleEmphasized)) {
+    const croppedPropName = typescaleProp.split('-').slice(0, 2).join('-');
+    if (!(croppedPropName in typescaleProps.emphasized)) {
+        typescaleProps.emphasized[croppedPropName] = [];
+    }
     if (typescaleValue.includes('--font-')) {
         css += `  --font-emphasized-${typescaleProp}: ${typescaleValue};\n`;
+        typescaleProps.emphasized[croppedPropName].push(`--font-emphasized-${typescaleProp}`);
     } else if (typescaleProp.includes('weight')) {
         const baseName = typescaleProp.replace('-weight', '');
         css += `  --font-weight-emphasized-${baseName}: ${typescaleValue};\n`;
+        typescaleProps.emphasized[croppedPropName].push(`--font-weight-emphasized-${baseName}`);
     } else if (typescaleProp.includes('line-height')) {
         const baseName = typescaleProp.replace('-line-height', '');
         css += `  --leading-emphasized-${baseName}: ${typescaleValue};\n`;
+        typescaleProps.emphasized[croppedPropName].push(`--leading-emphasized-${baseName}`);
     } else if (typescaleProp.includes('tracking')) {
         const baseName = typescaleProp.replace('-tracking', '');
         css += `  --tracking-emphasized-${baseName}: ${typescaleValue};\n\n`;
+        typescaleProps.emphasized[croppedPropName].push(`--tracking-emphasized-${baseName}`);
     } else {
         css += `  --text-emphasized-${typescaleProp}: ${typescaleValue};\n`;
+        typescaleProps.emphasized[croppedPropName].push(`--text-emphasized-${typescaleProp}`);
     }
+}
+
+css += `}\n\n`;
+
+css += `@layer utilities {\n`;
+
+//* TYPESCALE (normal)
+for (const [typescaleName, tsPropsMap] of Object.entries(typescaleProps.normal)) {
+    css += `  .typescale-${typescaleName} {\n`;
+    for (const propVarName of tsPropsMap as string[]) {
+        if (propVarName.includes('-family')) {
+            css += `    font-family: var(${propVarName});\n`;
+        } else if (propVarName.includes('--font-weight-')) {
+            css += `    font-weight: var(${propVarName});\n`;
+        } else if (propVarName.includes('--text')) {
+            css += `    font-size: var(${propVarName});\n`;
+        } else if (propVarName.includes('--leading')) {
+            css += `    line-height: var(${propVarName});\n`;
+        } else if (propVarName.includes('--tracking')) {
+            css += `    letter-spacing: var(${propVarName});\n`;
+        }
+    }
+    css += `  }\n`;
+}
+
+css += '\n';
+
+//* TYPESCALE (emphasized)
+for (const [typescaleName, tsPropsMap] of Object.entries(typescaleProps.emphasized)) {
+    css += `  .typescale-emphasized-${typescaleName} {\n`;
+    for (const propVarName of tsPropsMap as string[]) {
+        if (propVarName.includes('-family')) {
+            css += `    font-family: var(${propVarName});\n`;
+        } else if (propVarName.includes('--font-weight-')) {
+            css += `    font-weight: var(${propVarName});\n`;
+        } else if (propVarName.includes('--text')) {
+            css += `    font-size: var(${propVarName});\n`;
+        } else if (propVarName.includes('--leading')) {
+            css += `    line-height: var(${propVarName});\n`;
+        } else if (propVarName.includes('--tracking')) {
+            css += `    letter-spacing: var(${propVarName});\n`;
+        }
+    }
+    css += `  }\n`;
 }
 
 css += `}\n\n`;

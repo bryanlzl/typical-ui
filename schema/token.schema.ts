@@ -336,3 +336,16 @@ export const SCHEMA_TYPE_SCALE_EMPHASIZED: Record<string, string> = {
     'label-small-line-height': '16px',
     'label-small-tracking': '0.5px',
 };
+
+export const SCHEMA_ICON_: Record<string, any> = {
+    size: {
+        //^ density-independent pixels (dp)
+        small: 20,
+        standard: 24,
+        large: 40,
+        'extra-large': 48,
+    },
+    weight: [100, 200, 300, 400, 500, 600, 700, 800],
+    fill: { fill: 1, unfilled: 0 },
+    grade: { thin: -25, default: 0, soft: 50, bold: 100, strong: 200 },
+};

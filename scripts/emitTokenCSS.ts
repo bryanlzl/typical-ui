@@ -6,6 +6,7 @@ import { tokens } from '../typica.config';
 import {
     emitThemeBlock,
     emitTypescaleUtilityClass,
+    emityTypescaleProps,
     generateTonalHex,
     generateTonalOKLCH,
     generateTonalRGB,
@@ -62,7 +63,7 @@ for (const [key, baseValue] of Object.entries(tokens.color)) {
     }
 }
 
-css += '\n';
+css += `\n`;
 
 //* FONT ROLES
 for (const [fontRole, fontFamilies] of Object.entries(tokens.typography['font-role'])) {
@@ -71,61 +72,15 @@ for (const [fontRole, fontFamilies] of Object.entries(tokens.typography['font-ro
     css += '  \n';
 }
 
-css += '\n';
+css += `\n`;
 
 //* TYPESCALE PROPERTY (normal)
-for (const [typescaleProp, typescaleValue] of Object.entries(MD3_SCHEMA.typeScale)) {
-    const croppedPropName = typescaleProp.split('-').slice(0, 2).join('-');
-    if (!(croppedPropName in typescaleProps.normal)) {
-        typescaleProps.normal[croppedPropName] = [];
-    }
-    if (typescaleValue.includes('--font-')) {
-        css += `  --font-${typescaleProp}: ${typescaleValue};\n`;
-        typescaleProps.normal[croppedPropName].push(`--font-${typescaleProp}`);
-    } else if (typescaleProp.includes('weight')) {
-        const baseName = typescaleProp.replace('-weight', '');
-        css += `  --font-weight-${baseName}: ${typescaleValue};\n`;
-        typescaleProps.normal[croppedPropName].push(`--font-weight-${baseName}`);
-    } else if (typescaleProp.includes('line-height')) {
-        const baseName = typescaleProp.replace('-line-height', '');
-        css += `  --leading-${baseName}: ${typescaleValue};\n`;
-        typescaleProps.normal[croppedPropName].push(`--leading-${baseName}`);
-    } else if (typescaleProp.includes('tracking')) {
-        const baseName = typescaleProp.replace('-tracking', '');
-        css += `  --tracking-${baseName}: ${typescaleValue};\n\n`;
-        typescaleProps.normal[croppedPropName].push(`--tracking-${baseName}`);
-    } else {
-        css += `  --text-${typescaleProp}: ${typescaleValue};\n`;
-        typescaleProps.normal[croppedPropName].push(`--text-${typescaleProp}`);
-    }
-}
+css += emityTypescaleProps(MD3_SCHEMA.typeScale, typescaleProps.normal, false);
+
+css += `\n`;
 
 //* TYPESCALE PROPERTY (emphasized)
-for (const [typescaleProp, typescaleValue] of Object.entries(MD3_SCHEMA.typeScaleEmphasized)) {
-    const croppedPropName = typescaleProp.split('-').slice(0, 2).join('-');
-    if (!(croppedPropName in typescaleProps.emphasized)) {
-        typescaleProps.emphasized[croppedPropName] = [];
-    }
-    if (typescaleValue.includes('--font-')) {
-        css += `  --font-emphasized-${typescaleProp}: ${typescaleValue};\n`;
-        typescaleProps.emphasized[croppedPropName].push(`--font-emphasized-${typescaleProp}`);
-    } else if (typescaleProp.includes('weight')) {
-        const baseName = typescaleProp.replace('-weight', '');
-        css += `  --font-weight-emphasized-${baseName}: ${typescaleValue};\n`;
-        typescaleProps.emphasized[croppedPropName].push(`--font-weight-emphasized-${baseName}`);
-    } else if (typescaleProp.includes('line-height')) {
-        const baseName = typescaleProp.replace('-line-height', '');
-        css += `  --leading-emphasized-${baseName}: ${typescaleValue};\n`;
-        typescaleProps.emphasized[croppedPropName].push(`--leading-emphasized-${baseName}`);
-    } else if (typescaleProp.includes('tracking')) {
-        const baseName = typescaleProp.replace('-tracking', '');
-        css += `  --tracking-emphasized-${baseName}: ${typescaleValue};\n\n`;
-        typescaleProps.emphasized[croppedPropName].push(`--tracking-emphasized-${baseName}`);
-    } else {
-        css += `  --text-emphasized-${typescaleProp}: ${typescaleValue};\n`;
-        typescaleProps.emphasized[croppedPropName].push(`--text-emphasized-${typescaleProp}`);
-    }
-}
+css += emityTypescaleProps(MD3_SCHEMA.typeScaleEmphasized, typescaleProps.emphasized, true);
 
 css += `}\n\n`;
 
@@ -134,15 +89,19 @@ css += `@layer utilities {\n`;
 //* TYPESCALE (normal)
 css += emitTypescaleUtilityClass('typescale', typescaleProps.normal);
 
-css += '\n';
+css += `\n`;
 
 //* TYPESCALE (emphasized)
 css += emitTypescaleUtilityClass('typescale-emphasized', typescaleProps.emphasized);
 
 css += `}\n\n`;
 
-//*  THEME VARIABLES [COLOR, ELEVATION] (DARK & LIGHT)
+//*  THEME VARIABLES [COLOR, ELEVATION] (dark)
 css += emitThemeBlock('light', MD3_SCHEMA.themeColorLight, MD3_SCHEMA.elevationLight);
+
+css += `\n`;
+
+//*  THEME VARIABLES [COLOR, ELEVATION] (light)
 css += emitThemeBlock('dark', MD3_SCHEMA.themeColorDark, MD3_SCHEMA.elevationDark);
 
 fs.writeFileSync(outputPath, css);

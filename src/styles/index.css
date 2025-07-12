@@ -333,6 +333,7 @@
   --leading-label-small: 16px;
   --tracking-label-small: 0.5px;
 
+
   --font-emphasized-display-large-family: var(--font-display);
   --font-weight-emphasized-display-large: 500;
   --text-emphasized-display-large-size: 57px;
@@ -692,6 +693,7 @@
   --elevation-4: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px 0px rgba(0, 0, 0, 0.3);
   --elevation-5: 0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.3);
 }
+
  [data-theme='dark'] {
   --color-primary: var(--color-pri-80);
   --color-on-primary: var(--color-pri-20);

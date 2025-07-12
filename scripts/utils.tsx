@@ -238,7 +238,38 @@ export const emitThemeBlock = (
     out += `}\n`;
     return out;
 };
+//* EMIT TYPESCALE PROPERTIES
+export const emityTypescaleProps = (
+    schema: Record<string, string>,
+    target: Record<string, string[]>,
+    isEmphasized: boolean,
+) => {
+    const prefix = isEmphasized ? 'emphasized-' : '';
+    const cssLines: string[] = [];
+    for (const [prop, value] of Object.entries(schema)) {
+        const baseProp = prop.split('-').slice(0, 2).join('-');
+        if (!(baseProp in target)) target[baseProp] = [];
 
+        let varName = '';
+        if (value.includes('--font-')) {
+            varName = `--font-${prefix}${prop}`;
+        } else if (prop.includes('weight')) {
+            const base = prop.replace('-weight', '');
+            varName = `--font-weight-${prefix}${base}`;
+        } else if (prop.includes('line-height')) {
+            const base = prop.replace('-line-height', '');
+            varName = `--leading-${prefix}${base}`;
+        } else if (prop.includes('tracking')) {
+            const base = prop.replace('-tracking', '');
+            varName = `--tracking-${prefix}${base}`;
+        } else {
+            varName = `--text-${prefix}${prop}`;
+        }
+        cssLines.push(`  ${varName}: ${value};`);
+        target[baseProp].push(varName);
+    }
+    return cssLines.join('\n') + '\n';
+};
 //* EMIT TYPESCALE UTILITIES
 export const emitTypescaleUtilityClass = (classPrefix: string, typescaleMap: Record<string, string[]>): string => {
     let result = '';

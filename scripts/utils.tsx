@@ -265,7 +265,7 @@ export const emityTypescaleProps = (
         } else {
             varName = `--text-${prefix}${prop}`;
         }
-        cssLines.push(`  ${varName}: ${value};`);
+        cssLines.push(`  ${varName}: ${value};${prop.includes('tracking') ? '\n' : ''}`);
         target[baseProp].push(varName);
     }
     return cssLines.join('\n') + '\n';
